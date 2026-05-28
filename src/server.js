@@ -1,0 +1,17 @@
+require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') });
+const app = require('./app');
+const sequelize = require('./config/database');
+const {crearSuperAdmin} = require('./seeders/superadmin.seed');
+
+
+const PORT = process.env.PORT || 3000;
+
+sequelize.sync()
+    .then(async()=>{
+        console.log('Base de datos conectada');
+        await crearSuperAdmin();
+        app.listen(PORT, ()=>
+            console.log(`Servidor corriendo en http://localhost:${PORT}`)
+        );
+    })
+    .catch(err => console.error('Error DB: ', err));
