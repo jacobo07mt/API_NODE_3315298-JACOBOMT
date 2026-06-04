@@ -1,7 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
-const Sede = require('./sede.model');
-const Usuario = sequelize.define('Usuaro',{
+const Institucion = sequelize.define('institucion',{
     id:{
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -11,9 +10,9 @@ const Usuario = sequelize.define('Usuaro',{
         type: DataTypes.STRING,
         allowNull: false
     },
-    apellido:{
+     nit:{
         type: DataTypes.STRING,
-        allowNull: false,
+        unique: false,
     },
     correo: {
         type: DataTypes.STRING,
@@ -23,17 +22,14 @@ const Usuario = sequelize.define('Usuaro',{
             isEmail: true
         }
     },
-    password: {
+    direccion: {
         type: DataTypes.STRING,
         allowNull : false
     },
-    rol: {
-        type: DataTypes.ENUM(
-            'ADMIN',
-            'DOCENTE',
-            'ESTUDIANTE'
-        ),
-        defaultValue: 'ESTUDIANTE'
+    telefono: {
+        type: DataTypes.STRING,
+        allowNull : false
+       
     },
     estado: {
         type : DataTypes.BOOLEAN,
@@ -42,12 +38,9 @@ const Usuario = sequelize.define('Usuaro',{
 
 
 },{
-    tableName: 'Usuarios',
+    tableName: 'Instituciones',
     timestamps: true,
 
 });
 
-Sede.hasMany(Usuario,{foreignKey:'sede_id'});
-Usuario.belongsTo(Sede,{foreignKey: 'sede_id'});
-
-module.exports = Usuario;
+module.exports = Institucion;
