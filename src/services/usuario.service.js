@@ -16,7 +16,29 @@ const listarUsuarios = async () => {
     });
 };
 
+const desactivarUsuario = async(id)=>{
+    const usuario = await Usuario.findByPk(id);
+    if(!usuario){
+        throw new Error('Usuario no existe');
+
+    }
+    usuario.estado=false;
+    await usuario.save();
+    return usuario;
+};
+const actualizarUsuario= async(id,data)=>{
+    const usuario = await Usuario.findByPk(id);
+    if(!usuario){
+        throw new Error('No encontrado');
+    }
+    await usuario.update(data);
+    return usuario;
+
+}
+
 module.exports = {
     crearUsuario,
-    listarUsuarios
+    listarUsuarios,
+    desactivarUsuario,
+    actualizarUsuario
 };
