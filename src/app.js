@@ -7,6 +7,7 @@ const authRoutes = require('./routes/auth.routes');
 
 //Ruta de usuario
 const usuarioRoutes = require('./routes/usuario.routes');
+const institucionRoutes = require('./routes/institucion.routes');
 const app = express();
 const limiter = rateLimit({windowMs: 15 * 60 * 1000, max: 100});
 app.use(limiter);
@@ -20,6 +21,7 @@ app.use('/api/auth', authRoutes);
 
 //Indicamos la ruta usuario
 app.use('/api/usuarios', usuarioRoutes);
+app.use('./api/instituciones', institucionRoutes);
 
 app.get('/',(req,res)=> {
     res.send('🆗 API Funcionando Correctamente')
