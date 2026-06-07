@@ -4,13 +4,13 @@ const institucionController = require('../controllers/institucion.controller');
 const {validarJWT} = require ('../middlewares/auth.middleware');
 const {esAdminRole} = require ('../middlewares/role.middleware');
 const {validarCampos} = require ('../middlewares/validate.middleware');
-const {crearinstitucionValidator} = require('../validators/institucion.validator');
+const {crearInstitucionValidator} = require('../validators/institucion.validator');
 
 
 router.post('/', [
     validarJWT,
     esAdminRole,
-    crearinstitucionValidator,
+    crearInstitucionValidator,
     validarCampos],institucionController.crear);
 
 router.get('/',[

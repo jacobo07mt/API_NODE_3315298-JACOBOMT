@@ -21,7 +21,7 @@ app.use('/api/auth', authRoutes);
 
 //Indicamos la ruta usuario
 app.use('/api/usuarios', usuarioRoutes);
-app.use('./api/instituciones', institucionRoutes);
+app.use('/api/instituciones', institucionRoutes);
 
 app.get('/',(req,res)=> {
     res.send('🆗 API Funcionando Correctamente')
